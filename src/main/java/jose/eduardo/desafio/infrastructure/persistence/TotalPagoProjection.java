@@ -8,7 +8,7 @@ import java.math.BigDecimal;
  * <p>Os nomes dos getters correspondem aos aliases da consulta JPQL em
  * {@link ContaJpaRepository#totalPagoNoPeriodo}.</p>
  */
-interface TotalPagoProjection {
+public interface TotalPagoProjection {
 
     BigDecimal getTotal();
 
