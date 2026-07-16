@@ -35,14 +35,13 @@ public class ContaService {
     public Conta criar(CriarContaCommand comando) {
         Fornecedor fornecedor = buscarFornecedor(comando.fornecedorId());
 
-        Conta conta = Conta.builder()
-                .dataVencimento(comando.dataVencimento())
-                .dataPagamento(comando.dataPagamento())
-                .valor(comando.valor())
-                .descricao(comando.descricao())
-                .situacao(comando.situacao() != null ? comando.situacao() : SituacaoConta.PENDENTE)
-                .fornecedor(fornecedor)
-                .build();
+        Conta conta = Conta.criarNova(
+                comando.dataVencimento(),
+                comando.dataPagamento(),
+                comando.valor(),
+                comando.descricao(),
+                comando.situacao(),
+                fornecedor);
 
         return contaRepository.salvar(conta);
     }
@@ -68,12 +67,10 @@ public class ContaService {
         Conta conta = buscarPorId(id);
         Fornecedor fornecedor = buscarFornecedor(comando.fornecedorId());
 
-        conta.setDataVencimento(comando.dataVencimento());
-        conta.setDataPagamento(comando.dataPagamento());
-        conta.setValor(comando.valor());
-        conta.setDescricao(comando.descricao());
-        conta.setSituacao(comando.situacao() != null ? comando.situacao() : conta.getSituacao());
-        conta.setFornecedor(fornecedor);
+        conta.alterarDados(comando.dataVencimento(), comando.valor(), comando.descricao(), fornecedor);
+        if (comando.situacao() != null) {
+            conta.alterarSituacao(comando.situacao(), comando.dataPagamento());
+        }
 
         return contaRepository.salvar(conta);
     }

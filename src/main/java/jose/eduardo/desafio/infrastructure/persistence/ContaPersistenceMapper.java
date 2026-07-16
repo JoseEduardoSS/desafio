@@ -17,15 +17,14 @@ public class ContaPersistenceMapper {
         if (entity == null) {
             return null;
         }
-        return Conta.builder()
-                .id(entity.getId())
-                .dataVencimento(entity.getDataVencimento())
-                .dataPagamento(entity.getDataPagamento())
-                .valor(entity.getValor())
-                .descricao(entity.getDescricao())
-                .situacao(entity.getSituacao())
-                .fornecedor(fornecedorMapper.toDomain(entity.getFornecedor()))
-                .build();
+        return Conta.reconstituir(
+                entity.getId(),
+                entity.getDataVencimento(),
+                entity.getDataPagamento(),
+                entity.getValor(),
+                entity.getDescricao(),
+                entity.getSituacao(),
+                fornecedorMapper.toDomain(entity.getFornecedor()));
     }
 
     public ContaJpaEntity toJpa(Conta conta, FornecedorJpaEntity fornecedorRef) {

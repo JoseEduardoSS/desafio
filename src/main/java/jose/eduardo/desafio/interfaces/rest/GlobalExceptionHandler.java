@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import jose.eduardo.desafio.domain.exception.ContaNaoEncontradaException;
 import jose.eduardo.desafio.domain.exception.FornecedorNaoEncontradoException;
+import jose.eduardo.desafio.domain.exception.TransicaoSituacaoInvalidaException;
 import jose.eduardo.desafio.interfaces.rest.dto.ErroResponse;
 
 @RestControllerAdvice
@@ -23,6 +24,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(FornecedorNaoEncontradoException.class)
     public ResponseEntity<ErroResponse> tratarFornecedorNaoEncontrado(FornecedorNaoEncontradoException ex) {
         return construir(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
+    @ExceptionHandler(TransicaoSituacaoInvalidaException.class)
+    public ResponseEntity<ErroResponse> tratarTransicaoInvalida(TransicaoSituacaoInvalidaException ex) {
+        return construir(HttpStatus.CONFLICT, ex.getMessage());
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
