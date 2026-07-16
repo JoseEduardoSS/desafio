@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -24,6 +25,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(FornecedorNaoEncontradoException.class)
     public ResponseEntity<ErroResponse> tratarFornecedorNaoEncontrado(FornecedorNaoEncontradoException ex) {
         return construir(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<ErroResponse> tratarCredenciaisInvalidas(BadCredentialsException ex) {
+        return construir(HttpStatus.UNAUTHORIZED, "Usuário ou senha inválidos.");
     }
 
     @ExceptionHandler(TransicaoSituacaoInvalidaException.class)
