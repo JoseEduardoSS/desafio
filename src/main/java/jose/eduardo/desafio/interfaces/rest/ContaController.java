@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import jakarta.validation.Valid;
-import jose.eduardo.desafio.application.usecase.ContaService;
+import jose.eduardo.desafio.application.service.ContaService;
 import jose.eduardo.desafio.domain.model.Conta;
 import jose.eduardo.desafio.interfaces.rest.dto.AtualizarSituacaoRequest;
 import jose.eduardo.desafio.interfaces.rest.dto.ContaRequest;

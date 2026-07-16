@@ -1,4 +1,4 @@
-package jose.eduardo.desafio.application.usecase;
+package jose.eduardo.desafio.application.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import jose.eduardo.desafio.application.dto.AtualizarContaCommand;
-import jose.eduardo.desafio.application.dto.CriarContaCommand;
+import jose.eduardo.desafio.application.command.AtualizarContaCommand;
+import jose.eduardo.desafio.application.command.CriarContaCommand;
 import jose.eduardo.desafio.domain.exception.ContaNaoEncontradaException;
 import jose.eduardo.desafio.domain.exception.FornecedorNaoEncontradoException;
 import jose.eduardo.desafio.domain.model.Conta;
@@ -17,9 +17,9 @@ import jose.eduardo.desafio.domain.repository.ContaRepository;
 import jose.eduardo.desafio.domain.repository.FornecedorRepository;
 
 /**
- * Caso de uso que orquestra as operações de CRUD e a alteração de situação
- * de {@link Conta}. Coordena repositórios e regras, sem conter lógica de
- * apresentação ou de persistência.
+ * Serviço de aplicação que orquestra as operações de CRUD e a alteração de
+ * situação de {@link Conta}. Coordena repositórios e regras, sem conter lógica
+ * de apresentação ou de persistência.
  */
 @Service
 public class ContaService {

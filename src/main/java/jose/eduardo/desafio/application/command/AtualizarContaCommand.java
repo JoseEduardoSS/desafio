@@ -1,4 +1,4 @@
-package jose.eduardo.desafio.application.dto;
+package jose.eduardo.desafio.application.command;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -6,11 +6,9 @@ import java.time.LocalDate;
 import jose.eduardo.desafio.domain.model.SituacaoConta;
 
 /**
- * Dados de entrada para criação de uma conta.
- *
- * @param situacao situação inicial; se nula, a conta assume {@code PENDENTE}.
+ * Dados de entrada para atualização completa de uma conta.
  */
-public record CriarContaCommand(
+public record AtualizarContaCommand(
         LocalDate dataVencimento,
         LocalDate dataPagamento,
         BigDecimal valor,

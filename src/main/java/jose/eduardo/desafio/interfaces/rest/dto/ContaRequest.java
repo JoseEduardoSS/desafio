@@ -6,15 +6,10 @@ import java.time.LocalDate;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import jose.eduardo.desafio.application.dto.AtualizarContaCommand;
-import jose.eduardo.desafio.application.dto.CriarContaCommand;
+import jose.eduardo.desafio.application.command.AtualizarContaCommand;
+import jose.eduardo.desafio.application.command.CriarContaCommand;
 import jose.eduardo.desafio.domain.model.SituacaoConta;
 
-/**
- * Payload de entrada para criação e atualização de uma conta.
- *
- * @param situacao opcional; na criação, se ausente, assume {@code PENDENTE}.
- */
 public record ContaRequest(
         @NotNull(message = "A data de vencimento é obrigatória.")
         LocalDate dataVencimento,

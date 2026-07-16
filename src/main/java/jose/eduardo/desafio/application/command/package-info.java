@@ -5,4 +5,4 @@
  * na entrada e saída dos casos de uso, isolando o modelo de domínio das
  * camadas externas.</p>
  */
-package jose.eduardo.desafio.application.dto;
+package jose.eduardo.desafio.application.command;
