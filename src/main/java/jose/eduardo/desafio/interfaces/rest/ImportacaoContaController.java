@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jose.eduardo.desafio.application.service.ImportacaoContaService;
 import jose.eduardo.desafio.interfaces.rest.dto.ImportacaoContaResponse;
 
+@Tag(name = "Importação", description = "Importação assíncrona de contas via arquivo CSV")
 @RestController
 @RequestMapping("/api/contas/importacoes")
 public class ImportacaoContaController {
@@ -26,6 +29,7 @@ public class ImportacaoContaController {
         this.importacaoContaService = importacaoContaService;
     }
 
+    @Operation(summary = "Recebe um CSV e enfileira a importação, retornando um protocolo")
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ImportacaoContaResponse importar(@RequestParam("arquivo") MultipartFile arquivo) {

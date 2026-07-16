@@ -8,12 +8,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jose.eduardo.desafio.infrastructure.security.JwtTokenService;
 import jose.eduardo.desafio.infrastructure.security.JwtTokenService.TokenEmitido;
 import jose.eduardo.desafio.interfaces.rest.dto.LoginRequest;
 import jose.eduardo.desafio.interfaces.rest.dto.TokenResponse;
 
+@Tag(name = "Autenticação", description = "Emissão de token JWT para acesso à API")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -26,6 +30,8 @@ public class AuthController {
         this.tokenService = tokenService;
     }
 
+    @Operation(summary = "Autentica o usuário e retorna um token JWT")
+    @SecurityRequirements
     @PostMapping("/login")
     public TokenResponse login(@Valid @RequestBody LoginRequest request) {
         Authentication autenticacao = authenticationManager.authenticate(
