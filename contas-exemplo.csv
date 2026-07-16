@@ -2,8 +2,8 @@ dataVencimento,dataPagamento,valor,descricao,situacao,fornecedorId
 2026-07-10,,150.00,Conta de energia eletrica,PENDENTE,1
 2026-07-15,2026-07-14,320.50,Aluguel do escritorio,PAGO,1
 2026-07-20,,89.90,Internet fibra,PENDENTE,2
-2026-07-22,2026-07-22,1200.00,Materiais de escritorio,PAGO,2
+2026-06-22,2026-06-20,1200.00,Materiais de escritorio,PAGO,2
 2026-08-01,,55.00,Agua e esgoto,,1
 2026-08-05,,470.25,Servico de limpeza,PENDENTE,2
-2026-08-10,2026-08-09,999.99,Licenca de software,PAGO,1
+2026-06-10,2026-06-09,999.99,Licenca de software,PAGO,1
 2026-08-15,,60.00,Cafe e copa,PENDENTE,2
