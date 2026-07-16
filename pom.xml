@@ -5,8 +5,8 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>4.1.0</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>3.5.4</version>
+		<relativePath/>
 	</parent>
 	<groupId>jose.eduardo</groupId>
 	<artifactId>desafio</artifactId>
@@ -46,8 +46,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 
