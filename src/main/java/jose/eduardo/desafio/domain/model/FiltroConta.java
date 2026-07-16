@@ -2,19 +2,6 @@ package jose.eduardo.desafio.domain.model;
 
 import java.time.LocalDate;
 
-/**
- * Objeto de valor que expressa os critérios de busca de {@link Conta}.
- *
- * <p>Todos os campos são opcionais; um critério nulo (ou, no caso da descrição,
- * em branco) simplesmente não é aplicado. O filtro por {@code dataVencimento} é
- * um intervalo fechado — informar a mesma data em início e fim filtra um único
- * dia.</p>
- *
- * @param descricao            trecho a ser buscado na descrição (parcial, sem
- *                             diferenciar maiúsculas de minúsculas)
- * @param dataVencimentoInicio limite inferior (inclusivo) do vencimento
- * @param dataVencimentoFim    limite superior (inclusivo) do vencimento
- */
 public record FiltroConta(
         String descricao,
         LocalDate dataVencimentoInicio,

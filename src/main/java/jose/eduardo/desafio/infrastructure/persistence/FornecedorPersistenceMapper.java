@@ -4,10 +4,6 @@ import org.springframework.stereotype.Component;
 
 import jose.eduardo.desafio.domain.model.Fornecedor;
 
-/**
- * Conversão entre o modelo de domínio {@link Fornecedor} e a entidade
- * persistente {@link FornecedorJpaEntity}.
- */
 @Component
 public class FornecedorPersistenceMapper {
 

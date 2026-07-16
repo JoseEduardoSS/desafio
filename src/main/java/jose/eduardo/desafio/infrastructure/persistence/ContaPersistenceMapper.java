@@ -4,10 +4,6 @@ import org.springframework.stereotype.Component;
 
 import jose.eduardo.desafio.domain.model.Conta;
 
-/**
- * Conversão entre o modelo de domínio {@link Conta} e a entidade persistente
- * {@link ContaJpaEntity}.
- */
 @Component
 public class ContaPersistenceMapper {
 
@@ -32,11 +28,6 @@ public class ContaPersistenceMapper {
                 .build();
     }
 
-    /**
-     * Converte o domínio em entidade JPA. O {@code fornecedor} é fornecido como
-     * referência gerenciada para que a associação {@code @ManyToOne} não tente
-     * inserir/atualizar o fornecedor.
-     */
     public ContaJpaEntity toJpa(Conta conta, FornecedorJpaEntity fornecedorRef) {
         if (conta == null) {
             return null;

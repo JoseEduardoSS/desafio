@@ -9,19 +9,8 @@ import org.springframework.data.repository.query.Param;
 
 import jose.eduardo.desafio.domain.model.SituacaoConta;
 
-/**
- * Repositório Spring Data para {@link ContaJpaEntity}.
- *
- * <p>Estende {@link JpaSpecificationExecutor} para permitir consultas dinâmicas
- * (filtros combináveis) com paginação.</p>
- */
 public interface ContaJpaRepository extends JpaRepository<ContaJpaEntity, Long>, JpaSpecificationExecutor<ContaJpaEntity> {
 
-    /**
-     * Agrega o total pago (soma dos valores) e a quantidade de contas na
-     * situação informada cuja data de pagamento esteja no intervalo.
-     * O {@code COALESCE} garante zero quando não há contas no período.
-     */
     @Query("""
             SELECT COALESCE(SUM(c.valor), 0) AS total, COUNT(c) AS quantidade
             FROM ContaJpaEntity c

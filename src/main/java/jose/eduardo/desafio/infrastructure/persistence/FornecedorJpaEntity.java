@@ -11,9 +11,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * Mapeamento persistente (JPA) do {@link jose.eduardo.desafio.domain.model.Fornecedor}.
- */
 @Entity
 @Table(name = "fornecedor")
 @Getter

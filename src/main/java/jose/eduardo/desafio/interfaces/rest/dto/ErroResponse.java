@@ -3,9 +3,6 @@ package jose.eduardo.desafio.interfaces.rest.dto;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/**
- * Corpo padronizado de resposta de erro da API.
- */
 public record ErroResponse(
         OffsetDateTime timestamp,
         int status,

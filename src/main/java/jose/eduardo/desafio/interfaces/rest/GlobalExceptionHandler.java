@@ -12,9 +12,6 @@ import jose.eduardo.desafio.domain.exception.ContaNaoEncontradaException;
 import jose.eduardo.desafio.domain.exception.FornecedorNaoEncontradoException;
 import jose.eduardo.desafio.interfaces.rest.dto.ErroResponse;
 
-/**
- * Traduz exceções de domínio e de validação em respostas HTTP padronizadas.
- */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 

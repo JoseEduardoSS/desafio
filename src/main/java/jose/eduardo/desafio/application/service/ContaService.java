@@ -20,11 +20,6 @@ import jose.eduardo.desafio.domain.pagination.Paginacao;
 import jose.eduardo.desafio.domain.repository.ContaRepository;
 import jose.eduardo.desafio.domain.repository.FornecedorRepository;
 
-/**
- * Serviço de aplicação que orquestra as operações de CRUD e a alteração de
- * situação de {@link Conta}. Coordena repositórios e regras, sem conter lógica
- * de apresentação ou de persistência.
- */
 @Service
 public class ContaService {
 

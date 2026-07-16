@@ -7,10 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import jose.eduardo.desafio.domain.model.Fornecedor;
 import jose.eduardo.desafio.domain.repository.FornecedorRepository;
 
-/**
- * Popula alguns fornecedores no start para permitir testar o CRUD de contas,
- * já que toda conta exige um fornecedor existente.
- */
 @Configuration
 public class CargaInicialFornecedores {
 

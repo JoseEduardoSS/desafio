@@ -31,9 +31,6 @@ import jose.eduardo.desafio.interfaces.rest.dto.ContaResponse;
 import jose.eduardo.desafio.interfaces.rest.dto.PaginaResponse;
 import jose.eduardo.desafio.interfaces.rest.dto.RelatorioTotalPagoResponse;
 
-/**
- * API REST para o CRUD de contas e a alteração de situação (status).
- */
 @RestController
 @RequestMapping("/api/contas")
 public class ContaController {

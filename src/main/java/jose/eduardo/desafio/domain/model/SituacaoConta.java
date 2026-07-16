@@ -5,5 +5,4 @@ public enum SituacaoConta {
     PENDENTE,
     PAGO,
     CANCELADO
-
 }

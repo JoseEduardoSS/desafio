@@ -18,9 +18,6 @@ import jose.eduardo.desafio.domain.pagination.Pagina;
 import jose.eduardo.desafio.domain.pagination.Paginacao;
 import jose.eduardo.desafio.domain.repository.ContaRepository;
 
-/**
- * Adaptador JPA que implementa a porta {@link ContaRepository}.
- */
 @Repository
 public class ContaRepositoryImpl implements ContaRepository {
 
@@ -38,7 +35,6 @@ public class ContaRepositoryImpl implements ContaRepository {
 
     @Override
     public Conta salvar(Conta conta) {
-        // Referência gerenciada ao fornecedor (proxy) — evita insert/update indesejado.
         FornecedorJpaEntity fornecedorRef =
                 fornecedorJpaRepository.getReferenceById(conta.getFornecedor().getId());
         ContaJpaEntity salvo = jpaRepository.save(mapper.toJpa(conta, fornecedorRef));

@@ -6,9 +6,6 @@ import java.time.LocalDate;
 import jose.eduardo.desafio.domain.model.Conta;
 import jose.eduardo.desafio.domain.model.SituacaoConta;
 
-/**
- * Representação de saída de uma conta.
- */
 public record ContaResponse(
         Long id,
         LocalDate dataVencimento,

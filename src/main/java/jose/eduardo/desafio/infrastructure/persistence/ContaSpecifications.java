@@ -8,12 +8,6 @@ import org.springframework.data.jpa.domain.Specification;
 import jakarta.persistence.criteria.Predicate;
 import jose.eduardo.desafio.domain.model.FiltroConta;
 
-/**
- * Traduz um {@link FiltroConta} do domínio em {@link Specification} da JPA.
- *
- * <p>Concentra aqui o conhecimento sobre nomes de atributos persistentes,
- * mantendo o domínio alheio a detalhes de consulta.</p>
- */
 final class ContaSpecifications {
 
     private ContaSpecifications() {

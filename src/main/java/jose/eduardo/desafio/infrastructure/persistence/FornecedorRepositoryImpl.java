@@ -8,9 +8,6 @@ import org.springframework.stereotype.Repository;
 import jose.eduardo.desafio.domain.model.Fornecedor;
 import jose.eduardo.desafio.domain.repository.FornecedorRepository;
 
-/**
- * Adaptador JPA que implementa a porta {@link FornecedorRepository}.
- */
 @Repository
 public class FornecedorRepositoryImpl implements FornecedorRepository {
 
