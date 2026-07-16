@@ -3,9 +3,16 @@ package jose.eduardo.desafio.infrastructure.persistence;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import jose.eduardo.desafio.domain.model.Conta;
+import jose.eduardo.desafio.domain.model.FiltroConta;
+import jose.eduardo.desafio.domain.pagination.Pagina;
+import jose.eduardo.desafio.domain.pagination.Paginacao;
 import jose.eduardo.desafio.domain.repository.ContaRepository;
 
 /**
@@ -41,8 +48,22 @@ public class ContaRepositoryImpl implements ContaRepository {
     }
 
     @Override
-    public List<Conta> listarTodas() {
-        return jpaRepository.findAll().stream().map(mapper::toDomain).toList();
+    public Pagina<Conta> buscar(FiltroConta filtro, Paginacao paginacao) {
+        Pageable pageable = PageRequest.of(
+                paginacao.pagina(),
+                paginacao.tamanho(),
+                Sort.by(Sort.Direction.ASC, "dataVencimento"));
+
+        Page<ContaJpaEntity> pagina =
+                jpaRepository.findAll(ContaSpecifications.comFiltro(filtro), pageable);
+
+        List<Conta> conteudo = pagina.getContent().stream().map(mapper::toDomain).toList();
+        return new Pagina<>(
+                conteudo,
+                pagina.getNumber(),
+                pagina.getSize(),
+                pagina.getTotalElements(),
+                pagina.getTotalPages());
     }
 
     @Override

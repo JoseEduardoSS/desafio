@@ -1,8 +1,9 @@
 package jose.eduardo.desafio.interfaces.rest;
 
 import java.net.URI;
-import java.util.List;
+import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -20,9 +22,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 import jakarta.validation.Valid;
 import jose.eduardo.desafio.application.service.ContaService;
 import jose.eduardo.desafio.domain.model.Conta;
+import jose.eduardo.desafio.domain.model.FiltroConta;
+import jose.eduardo.desafio.domain.pagination.Paginacao;
 import jose.eduardo.desafio.interfaces.rest.dto.AtualizarSituacaoRequest;
 import jose.eduardo.desafio.interfaces.rest.dto.ContaRequest;
 import jose.eduardo.desafio.interfaces.rest.dto.ContaResponse;
+import jose.eduardo.desafio.interfaces.rest.dto.PaginaResponse;
 
 /**
  * API REST para o CRUD de contas e a alteração de situação (status).
@@ -46,8 +51,18 @@ public class ContaController {
     }
 
     @GetMapping
-    public List<ContaResponse> listar() {
-        return contaService.listar().stream().map(ContaResponse::from).toList();
+    public PaginaResponse<ContaResponse> listar(
+            @RequestParam(required = false) String descricao,
+            @RequestParam(required = false)
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataVencimentoInicio,
+            @RequestParam(required = false)
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataVencimentoFim,
+            @RequestParam(required = false) Integer pagina,
+            @RequestParam(required = false) Integer tamanho) {
+
+        FiltroConta filtro = new FiltroConta(descricao, dataVencimentoInicio, dataVencimentoFim);
+        Paginacao paginacao = Paginacao.de(pagina, tamanho);
+        return PaginaResponse.from(contaService.listar(filtro, paginacao), ContaResponse::from);
     }
 
     @GetMapping("/{id}")

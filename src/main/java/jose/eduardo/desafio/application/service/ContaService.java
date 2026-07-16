@@ -1,6 +1,5 @@
 package jose.eduardo.desafio.application.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -11,8 +10,11 @@ import jose.eduardo.desafio.application.command.CriarContaCommand;
 import jose.eduardo.desafio.domain.exception.ContaNaoEncontradaException;
 import jose.eduardo.desafio.domain.exception.FornecedorNaoEncontradoException;
 import jose.eduardo.desafio.domain.model.Conta;
+import jose.eduardo.desafio.domain.model.FiltroConta;
 import jose.eduardo.desafio.domain.model.Fornecedor;
 import jose.eduardo.desafio.domain.model.SituacaoConta;
+import jose.eduardo.desafio.domain.pagination.Pagina;
+import jose.eduardo.desafio.domain.pagination.Paginacao;
 import jose.eduardo.desafio.domain.repository.ContaRepository;
 import jose.eduardo.desafio.domain.repository.FornecedorRepository;
 
@@ -49,8 +51,8 @@ public class ContaService {
     }
 
     @Transactional(readOnly = true)
-    public List<Conta> listar() {
-        return contaRepository.listarTodas();
+    public Pagina<Conta> listar(FiltroConta filtro, Paginacao paginacao) {
+        return contaRepository.buscar(filtro, paginacao);
     }
 
     @Transactional(readOnly = true)

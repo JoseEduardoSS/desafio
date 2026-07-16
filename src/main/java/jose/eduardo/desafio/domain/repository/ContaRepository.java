@@ -1,9 +1,11 @@
 package jose.eduardo.desafio.domain.repository;
 
-import java.util.List;
 import java.util.Optional;
 
 import jose.eduardo.desafio.domain.model.Conta;
+import jose.eduardo.desafio.domain.model.FiltroConta;
+import jose.eduardo.desafio.domain.pagination.Pagina;
+import jose.eduardo.desafio.domain.pagination.Paginacao;
 
 /**
  * Porta de persistência do agregado {@link Conta}.
@@ -17,7 +19,11 @@ public interface ContaRepository {
 
     Optional<Conta> buscarPorId(Long id);
 
-    List<Conta> listarTodas();
+    /**
+     * Busca contas aplicando o {@link FiltroConta} informado e retornando o
+     * resultado de acordo com a {@link Paginacao} solicitada.
+     */
+    Pagina<Conta> buscar(FiltroConta filtro, Paginacao paginacao);
 
     boolean existePorId(Long id);
 
