@@ -11,10 +11,6 @@ import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * Topologia de mensageria da importação de contas: exchange, fila principal e
- * fila de mensagens mortas (DLQ) para mensagens que não puderam ser processadas.
- */
 @Configuration
 public class RabbitConfig {
 
