@@ -12,6 +12,8 @@ import jose.eduardo.desafio.domain.exception.FornecedorNaoEncontradoException;
 import jose.eduardo.desafio.domain.model.Conta;
 import jose.eduardo.desafio.domain.model.FiltroConta;
 import jose.eduardo.desafio.domain.model.Fornecedor;
+import jose.eduardo.desafio.domain.model.Periodo;
+import jose.eduardo.desafio.domain.model.RelatorioTotalPago;
 import jose.eduardo.desafio.domain.model.SituacaoConta;
 import jose.eduardo.desafio.domain.pagination.Pagina;
 import jose.eduardo.desafio.domain.pagination.Paginacao;
@@ -53,6 +55,11 @@ public class ContaService {
     @Transactional(readOnly = true)
     public Pagina<Conta> listar(FiltroConta filtro, Paginacao paginacao) {
         return contaRepository.buscar(filtro, paginacao);
+    }
+
+    @Transactional(readOnly = true)
+    public RelatorioTotalPago totalPagoNoPeriodo(Periodo periodo) {
+        return contaRepository.totalPagoNoPeriodo(periodo);
     }
 
     @Transactional(readOnly = true)

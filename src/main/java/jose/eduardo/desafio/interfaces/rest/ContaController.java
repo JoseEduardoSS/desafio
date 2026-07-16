@@ -23,11 +23,13 @@ import jakarta.validation.Valid;
 import jose.eduardo.desafio.application.service.ContaService;
 import jose.eduardo.desafio.domain.model.Conta;
 import jose.eduardo.desafio.domain.model.FiltroConta;
+import jose.eduardo.desafio.domain.model.Periodo;
 import jose.eduardo.desafio.domain.pagination.Paginacao;
 import jose.eduardo.desafio.interfaces.rest.dto.AtualizarSituacaoRequest;
 import jose.eduardo.desafio.interfaces.rest.dto.ContaRequest;
 import jose.eduardo.desafio.interfaces.rest.dto.ContaResponse;
 import jose.eduardo.desafio.interfaces.rest.dto.PaginaResponse;
+import jose.eduardo.desafio.interfaces.rest.dto.RelatorioTotalPagoResponse;
 
 /**
  * API REST para o CRUD de contas e a alteração de situação (status).
@@ -63,6 +65,15 @@ public class ContaController {
         FiltroConta filtro = new FiltroConta(descricao, dataVencimentoInicio, dataVencimentoFim);
         Paginacao paginacao = Paginacao.de(pagina, tamanho);
         return PaginaResponse.from(contaService.listar(filtro, paginacao), ContaResponse::from);
+    }
+
+    @GetMapping("/relatorios/total-pago")
+    public RelatorioTotalPagoResponse totalPago(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate inicio,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fim) {
+
+        Periodo periodo = new Periodo(inicio, fim);
+        return RelatorioTotalPagoResponse.from(contaService.totalPagoNoPeriodo(periodo));
     }
 
     @GetMapping("/{id}")

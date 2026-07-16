@@ -11,6 +11,9 @@ import org.springframework.stereotype.Repository;
 
 import jose.eduardo.desafio.domain.model.Conta;
 import jose.eduardo.desafio.domain.model.FiltroConta;
+import jose.eduardo.desafio.domain.model.Periodo;
+import jose.eduardo.desafio.domain.model.RelatorioTotalPago;
+import jose.eduardo.desafio.domain.model.SituacaoConta;
 import jose.eduardo.desafio.domain.pagination.Pagina;
 import jose.eduardo.desafio.domain.pagination.Paginacao;
 import jose.eduardo.desafio.domain.repository.ContaRepository;
@@ -64,6 +67,13 @@ public class ContaRepositoryImpl implements ContaRepository {
                 pagina.getSize(),
                 pagina.getTotalElements(),
                 pagina.getTotalPages());
+    }
+
+    @Override
+    public RelatorioTotalPago totalPagoNoPeriodo(Periodo periodo) {
+        TotalPagoProjection projecao = jpaRepository.totalPagoNoPeriodo(
+                SituacaoConta.PAGO, periodo.inicio(), periodo.fim());
+        return new RelatorioTotalPago(periodo, projecao.getTotal(), projecao.getQuantidade());
     }
 
     @Override
