@@ -85,14 +85,3 @@ inválida é ignorada sem abortar o arquivo. Há fila de _dead-letter_ configura
 **Segurança stateless com JWT.** A app atua como _resource server_; tokens são
 assinados/verificados com chave simétrica (HS256). Rotas de autenticação e da
 documentação são públicas, o restante exige token.
-
----
-
-## Testes
-
-```bash
-./mvnw test
-```
-
-Cobrem as regras de negócio (invariantes da conta, máquina de estados, parser do CSV,
-serviços e _value objects_). Requerem PostgreSQL e RabbitMQ disponíveis.
