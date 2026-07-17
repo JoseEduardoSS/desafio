@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import jose.eduardo.desafio.application.command.CriarContaCommand;
+import jose.eduardo.desafio.application.command.ContaCommand;
 import jose.eduardo.desafio.domain.model.SituacaoConta;
 
 class ContaCsvParserTest {
@@ -16,7 +16,7 @@ class ContaCsvParserTest {
 
     @Test
     void shouldConverterLinhaValidaEmComando() {
-        CriarContaCommand comando =
+        ContaCommand comando =
                 parser.parseLinha("2026-07-15,2026-07-14,320.50,Aluguel,PAGO,1");
 
         assertThat(comando.dataVencimento()).isEqualTo(LocalDate.of(2026, 7, 15));
@@ -29,7 +29,7 @@ class ContaCsvParserTest {
 
     @Test
     void shouldTratarCamposOpcionaisVaziosComoNulos() {
-        CriarContaCommand comando =
+        ContaCommand comando =
                 parser.parseLinha("2026-07-10,,150.00,,,2");
 
         assertThat(comando.dataPagamento()).isNull();

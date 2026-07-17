@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 import org.springframework.stereotype.Component;
 
-import jose.eduardo.desafio.application.command.CriarContaCommand;
+import jose.eduardo.desafio.application.command.ContaCommand;
 import jose.eduardo.desafio.domain.model.SituacaoConta;
 
 @Component
@@ -13,7 +13,7 @@ public class ContaCsvParser {
 
     private static final int COLUNAS_ESPERADAS = 6;
 
-    public CriarContaCommand parseLinha(String linha) {
+    public ContaCommand parseLinha(String linha) {
         String[] colunas = linha.split(",", -1);
         if (colunas.length < COLUNAS_ESPERADAS) {
             throw new IllegalArgumentException(
@@ -27,7 +27,7 @@ public class ContaCsvParser {
         SituacaoConta situacao = parseSituacaoOpcional(colunas[4]);
         Long fornecedorId = parseFornecedorId(colunas[5]);
 
-        return new CriarContaCommand(dataVencimento, dataPagamento, valor, descricao, situacao, fornecedorId);
+        return new ContaCommand(dataVencimento, dataPagamento, valor, descricao, situacao, fornecedorId);
     }
 
     private LocalDate parseDataObrigatoria(String valor, String campo) {

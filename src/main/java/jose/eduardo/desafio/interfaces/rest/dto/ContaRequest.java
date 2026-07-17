@@ -6,8 +6,7 @@ import java.time.LocalDate;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import jose.eduardo.desafio.application.command.AtualizarContaCommand;
-import jose.eduardo.desafio.application.command.CriarContaCommand;
+import jose.eduardo.desafio.application.command.ContaCommand;
 import jose.eduardo.desafio.domain.model.SituacaoConta;
 
 public record ContaRequest(
@@ -28,11 +27,7 @@ public record ContaRequest(
         @NotNull(message = "O fornecedor é obrigatório.")
         Long fornecedorId) {
 
-    public CriarContaCommand toCriarCommand() {
-        return new CriarContaCommand(dataVencimento, dataPagamento, valor, descricao, situacao, fornecedorId);
-    }
-
-    public AtualizarContaCommand toAtualizarCommand() {
-        return new AtualizarContaCommand(dataVencimento, dataPagamento, valor, descricao, situacao, fornecedorId);
+    public ContaCommand toCommand() {
+        return new ContaCommand(dataVencimento, dataPagamento, valor, descricao, situacao, fornecedorId);
     }
 }

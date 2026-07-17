@@ -18,7 +18,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import jose.eduardo.desafio.application.command.CriarContaCommand;
+import jose.eduardo.desafio.application.command.ContaCommand;
 import jose.eduardo.desafio.domain.exception.ContaNaoEncontradaException;
 import jose.eduardo.desafio.domain.exception.FornecedorNaoEncontradoException;
 import jose.eduardo.desafio.domain.model.Conta;
@@ -45,7 +45,7 @@ class ContaServiceTest {
                 .thenReturn(Optional.of(Fornecedor.builder().id(1L).nome("Alpha").build()));
         when(contaRepository.salvar(any(Conta.class))).thenAnswer(inv -> inv.getArgument(0));
 
-        CriarContaCommand comando = new CriarContaCommand(
+        ContaCommand comando = new ContaCommand(
                 LocalDate.of(2026, 7, 10), null, new BigDecimal("150.00"), "Energia", null, 1L);
 
         service.criar(comando);
@@ -59,7 +59,7 @@ class ContaServiceTest {
     void shouldLancarExcecaoAoCriarComFornecedorInexistente() {
         when(fornecedorRepository.buscarPorId(999L)).thenReturn(Optional.empty());
 
-        CriarContaCommand comando = new CriarContaCommand(
+        ContaCommand comando = new ContaCommand(
                 LocalDate.of(2026, 7, 10), null, new BigDecimal("150.00"), "Energia", null, 999L);
 
         assertThatThrownBy(() -> service.criar(comando))

@@ -3,12 +3,10 @@ package jose.eduardo.desafio.infrastructure.messaging;
 import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
-import jose.eduardo.desafio.application.command.CriarContaCommand;
+import jose.eduardo.desafio.application.command.ContaCommand;
 import jose.eduardo.desafio.application.messaging.ImportacaoContaMessage;
 import jose.eduardo.desafio.application.service.ContaService;
 import jose.eduardo.desafio.infrastructure.config.RabbitConfig;
@@ -41,7 +39,7 @@ public class ImportacaoContaConsumer {
             }
             int numeroLinha = i + 1;
             try {
-                CriarContaCommand comando = parser.parseLinha(linha);
+                ContaCommand comando = parser.parseLinha(linha);
                 contaService.criar(comando);
                 sucesso++;
             } catch (Exception e) {

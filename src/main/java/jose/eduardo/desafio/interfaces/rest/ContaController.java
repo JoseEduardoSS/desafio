@@ -48,7 +48,7 @@ public class ContaController {
     @PostMapping
     public ResponseEntity<ContaResponse> criar(@Valid @RequestBody ContaRequest request,
                                                UriComponentsBuilder uriBuilder) {
-        Conta conta = contaService.criar(request.toCriarCommand());
+        Conta conta = contaService.criar(request.toCommand());
         URI location = uriBuilder.path("/api/contas/{id}").buildAndExpand(conta.getId()).toUri();
         return ResponseEntity.created(location).body(ContaResponse.from(conta));
     }
@@ -88,7 +88,7 @@ public class ContaController {
     @Operation(summary = "Atualiza os dados de uma conta existente")
     @PutMapping("/{id}")
     public ContaResponse atualizar(@PathVariable Long id, @Valid @RequestBody ContaRequest request) {
-        return ContaResponse.from(contaService.atualizar(id, request.toAtualizarCommand()));
+        return ContaResponse.from(contaService.atualizar(id, request.toCommand()));
     }
 
     @Operation(summary = "Altera a situação da conta (respeita a máquina de estados; 409 se inválida)")

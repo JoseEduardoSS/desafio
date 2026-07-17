@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 import jose.eduardo.desafio.domain.model.SituacaoConta;
 
-public record CriarContaCommand(
+public record ContaCommand(
         LocalDate dataVencimento,
         LocalDate dataPagamento,
         BigDecimal valor,

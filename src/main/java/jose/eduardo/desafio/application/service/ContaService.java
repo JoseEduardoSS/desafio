@@ -5,8 +5,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import jose.eduardo.desafio.application.command.AtualizarContaCommand;
-import jose.eduardo.desafio.application.command.CriarContaCommand;
+import jose.eduardo.desafio.application.command.ContaCommand;
 import jose.eduardo.desafio.domain.exception.ContaNaoEncontradaException;
 import jose.eduardo.desafio.domain.exception.FornecedorNaoEncontradoException;
 import jose.eduardo.desafio.domain.model.Conta;
@@ -32,7 +31,7 @@ public class ContaService {
     }
 
     @Transactional
-    public Conta criar(CriarContaCommand comando) {
+    public Conta criar(ContaCommand comando) {
         Fornecedor fornecedor = buscarFornecedor(comando.fornecedorId());
 
         Conta conta = Conta.criarNova(
@@ -63,7 +62,7 @@ public class ContaService {
     }
 
     @Transactional
-    public Conta atualizar(Long id, AtualizarContaCommand comando) {
+    public Conta atualizar(Long id, ContaCommand comando) {
         Conta conta = buscarPorId(id);
         Fornecedor fornecedor = buscarFornecedor(comando.fornecedorId());
 
