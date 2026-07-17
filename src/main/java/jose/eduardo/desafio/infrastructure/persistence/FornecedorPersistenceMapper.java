@@ -16,11 +16,4 @@ public class FornecedorPersistenceMapper {
                 .nome(entity.getNome())
                 .build();
     }
-
-    public FornecedorJpaEntity toJpa(Fornecedor fornecedor) {
-        if (fornecedor == null) {
-            return null;
-        }
-        return new FornecedorJpaEntity(fornecedor.getId(), fornecedor.getNome());
-    }
 }

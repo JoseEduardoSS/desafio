@@ -1,6 +1,5 @@
 package jose.eduardo.desafio.infrastructure.persistence;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
@@ -20,18 +19,7 @@ public class FornecedorRepositoryImpl implements FornecedorRepository {
     }
 
     @Override
-    public Fornecedor salvar(Fornecedor fornecedor) {
-        FornecedorJpaEntity salvo = jpaRepository.save(mapper.toJpa(fornecedor));
-        return mapper.toDomain(salvo);
-    }
-
-    @Override
     public Optional<Fornecedor> buscarPorId(Long id) {
         return jpaRepository.findById(id).map(mapper::toDomain);
-    }
-
-    @Override
-    public List<Fornecedor> listarTodos() {
-        return jpaRepository.findAll().stream().map(mapper::toDomain).toList();
     }
 }

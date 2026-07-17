@@ -26,11 +26,11 @@ import jose.eduardo.desafio.application.service.ContaService;
 import jose.eduardo.desafio.domain.model.Conta;
 import jose.eduardo.desafio.domain.model.FiltroConta;
 import jose.eduardo.desafio.domain.model.Periodo;
+import jose.eduardo.desafio.domain.pagination.Pagina;
 import jose.eduardo.desafio.domain.pagination.Paginacao;
 import jose.eduardo.desafio.interfaces.rest.dto.AtualizarSituacaoRequest;
 import jose.eduardo.desafio.interfaces.rest.dto.ContaRequest;
 import jose.eduardo.desafio.interfaces.rest.dto.ContaResponse;
-import jose.eduardo.desafio.interfaces.rest.dto.PaginaResponse;
 import jose.eduardo.desafio.interfaces.rest.dto.RelatorioTotalPagoResponse;
 
 @Tag(name = "Contas", description = "Cadastro, consulta, filtros e relatório de contas a pagar")
@@ -55,7 +55,7 @@ public class ContaController {
 
     @Operation(summary = "Lista contas de forma paginada, com filtros por descrição e vencimento")
     @GetMapping
-    public PaginaResponse<ContaResponse> listar(
+    public Pagina<ContaResponse> listar(
             @RequestParam(required = false) String descricao,
             @RequestParam(required = false)
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataVencimentoInicio,
@@ -66,7 +66,7 @@ public class ContaController {
 
         FiltroConta filtro = new FiltroConta(descricao, dataVencimentoInicio, dataVencimentoFim);
         Paginacao paginacao = Paginacao.de(pagina, tamanho);
-        return PaginaResponse.from(contaService.listar(filtro, paginacao), ContaResponse::from);
+        return contaService.listar(filtro, paginacao).map(ContaResponse::from);
     }
 
     @Operation(summary = "Retorna o total pago e a quantidade de contas em um período")
